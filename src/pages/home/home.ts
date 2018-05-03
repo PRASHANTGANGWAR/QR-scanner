@@ -13,6 +13,8 @@ export class HomePage {
   products: any[] = [];
   selectedProduct: any;
   productFound:boolean = false;
+  phone:any;
+  otp:any;
 
   constructor(public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner,
@@ -49,5 +51,17 @@ export class HomePage {
       );
     });
   }
+
+
+  login(phone,otp)
+  {
+    console.log(this.otp); console.log(this.phone);
+      if((this.phone == "9999999999") && (this.otp == "1234" || "undefined"))
+       {
+     alert("login sucessful");
+     this.scan();
+       }
+ }
+  
 
 }

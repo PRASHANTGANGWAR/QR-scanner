@@ -1,4 +1,55 @@
-<ion-header>
+<!-- <ion-view id="login" hide-nav-bar="true">
+    <ion-content padding="true" scroll="false">
+        <form>
+            <div class="row responsive-md">
+                <div class="col col-50 col-offset-25">
+
+                    <div class="header padding text-center">
+                        <img src="img/logo.png" alt="Your logo here"/>
+                    </div>
+
+                    <div class="list">
+                        <label class="item item-input">
+                            <input type="email" placeholder="Email">
+                        </label>
+                        <label class="item item-input">
+                            <input type="password" placeholder="Password">
+                        </label>
+                    </div>
+
+                    <button class="button button-block button-positive">
+                        Log In
+                    </button>
+
+                    <div class="row row-no-padding">
+                        <div class="col">
+                            <button class="button button-clear button-light">
+                                Forgot password?
+                            </button>
+                        </div>
+
+                        <div class="col text-right">
+                            <button class="button button-clear button-light">
+                                Sign up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view> -->
+
+
+
+
+
+
+
+
+
+
+ <ion-header>
   <ion-navbar>
     <ion-title>
       Ionic Blank
@@ -7,24 +58,31 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <h1>
-    <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
-  </h1>
+    <div class="header padding text-center">
+                        <img src="assets/icon/favicon.ico" alt="QR scanner"/>
+                    </div>
 
-  <ion-card *ngIf="productFound">
-    <ion-card-header>
-      <h2>Price: $ {{selectedProduct.price}}</h2>
-    </ion-card-header>
-    <ion-card-content>
-      <ul>
-        <li>{{selectedProduct.plu}}</li>
-        <li>{{selectedProduct.name}}</li>
-        <li>{{selectedProduct.desc}}</li>
-      </ul>
-    </ion-card-content>
-  </ion-card>
+
+<form  #loginForm="ngForm" (ngSubmit)="login()">
+    <div class="row responsive-md">
+                <div class="col col-50 col-offset-25">
+
+  <p>
+    Enter Phone No. 
+  </p>
+                   <div class="list">
+                        <label class="item item-input">
+                            <input type="text" placeholder="phone number" [(ngModel)]="phone" name="phone" id="phone">
+                        </label>
+                        <label class="item item-input">
+                            <input type="text" placeholder="OTP" [(ngModel)]="login.otp" name="otp" id="otp">
+                        </label>
+                    </div>
+
+  <h1>
+    <button ion-button color="dark" full round (click)="login(phone)">login</button>
+  </h1>
+</div>
+</div>
+</form>
 </ion-content>
