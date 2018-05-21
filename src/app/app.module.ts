@@ -6,16 +6,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { HttpModule } from '@angular/http';
-
+import { PageScanPage } from '../pages/page-scan/page-scan';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { HomePage} from '../pages/home/home';
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { AlertProvider } from '../providers/alert/alert';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    PageScanPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,9 @@ import { AlertProvider } from '../providers/alert/alert';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    PageScanPage
+
   ],
   providers: [
     StatusBar,

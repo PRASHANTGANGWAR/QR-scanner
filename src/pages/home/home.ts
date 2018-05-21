@@ -6,6 +6,8 @@ import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { AlertProvider } from '../../providers/alert/alert';
 import { UserOptions } from '../../interface/user-options';
+import { PageScanPage } from '../page-scan/page-scan';
+
 
 
 //import {SucessPage} from '../sucess'; 
@@ -54,13 +56,15 @@ export class HomePage implements OnInit{
   } 
 
   scanoutercode() {
+                    this.navCtrl.setRoot(PageScanPage);
+
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
       this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
-        alert("you scanned:(" + barcodeData.text+")")
+        alert("you scanned :(" + barcodeData.text+")" + "  "+"now scan inner barcode")
         this.scaninnercode();
 
       } else {
@@ -72,7 +76,11 @@ export class HomePage implements OnInit{
             console.log(toast);
           }
         );
+        alert("Scanned code invalid please scan valid 'OUTER' Bar/QR code");
+      this.scanoutercode();
       }
+        
+
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
         toast => {
@@ -113,7 +121,8 @@ export class HomePage implements OnInit{
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
-        this.navCtrl.push('SucessPage');
+                alert("scanning inner and outer bar code sucessful");
+         this.scanoutercode();
         
       } else {
         this.selectedProduct2 = {};
@@ -123,6 +132,9 @@ export class HomePage implements OnInit{
             console.log(toast);
           }
         );
+        alert("Scanned code invalid please scan valid 'INNER' Bar/QR code");
+        this.scaninnercode();
+
       }
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
