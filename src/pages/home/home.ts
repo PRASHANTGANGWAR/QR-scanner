@@ -60,7 +60,7 @@ export class HomePage implements OnInit{
 
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
+      this.selectedProduct = this.products.find(product => product.outer === barcodeData.text);
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
@@ -117,7 +117,7 @@ export class HomePage implements OnInit{
   {
       this.selectedProduct2 = {};
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.selectedProduct2 = this.products.find(product => product.plu === barcodeData.text);
+      this.selectedProduct2 = this.products.find(product => product.inner === barcodeData.text);
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
