@@ -18,13 +18,27 @@
 <ion-content padding>
 
 
-<ion-card *ngIf="productNotFound">
+<ion-card *ngIf="productFound">
     <ion-card-header>
       <h2>you have scanned</h2>
     </ion-card-header>
     <ion-card-content>
       <ul>
         <li>{{selectedProduct.plu}}</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+<ion-card *ngIf="productNotFound">
+    <ion-card-header>
+      <h2>try again your search</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ul>
+        <li>try scanning diffrent scan</li>
       </ul>
     </ion-card-content>
   </ion-card>

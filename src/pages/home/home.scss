@@ -1,34 +1,56 @@
-page-home {
-
+.form-content{
+    .scroll-content{
+        padding: 25px 25px 0 25px !important;
+    }
 }
 
+.Loginpage{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-#login {
-  background: #1c2627 url("../img/login_bg.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.formContainer{
+    width: 100%;
+}
 
-  .scroll-content {
-    display: table !important;
-    width: 100% !important;
-    height: 100% !important;
-
-    form {
-      display: table-cell;
-      vertical-align: middle;
-
-      .header {
-        padding-bottom: 20px;
-
-        img {
-          display: block;
-          width: 80%;
-          margin: 0 auto;
-        }
-      }
-
+.logo{
+    img{
+        height: 60px;
+        max-width: 130px;
+        object-fit: contain;
+        -o-object-fit: contain;
     }
-  }
+}
+
+.fb-btn{
+    height: 3.4rem;
+    font-size: 1.2rem;
+    padding: 0 1.5em;
+    ion-icon{
+        margin-right: 4px;
+    }
+}
+
+.or{
+    margin-bottom: 23px;
+}
+
+.app-form{
+    .item-ios{
+        border: 1px solid #c8c7cc !important;
+        border-radius: 25px;
+        min-height: 5rem;
+        margin-bottom: 12px;
+        ion-icon{
+            font-size: 2.2rem;
+            min-height: 2.2rem;
+            margin-right: 6px;
+        }
+    }
+    .text-input{
+        font-size: 1.45rem;
+    }
 }

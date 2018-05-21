@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component,OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NavController, MenuController, Events } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { AlertProvider } from '../../providers/alert/alert';
+import { UserOptions } from '../../interface/user-options';
 
+
+//import {SucessPage} from '../sucess'; 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
+
+  //SucessPage=SucessPage;
 
   products: any[] = [];
   selectedProduct: any;
@@ -17,17 +24,34 @@ export class HomePage {
   producNotFound:boolean = false;
   phone:any;
   otp:any;
+    loginForm:any;
+      submitted = false;
+  login: UserOptions = { mobile: '', password: '' };
+    public flag : boolean = false;
+
 
   constructor(public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner,
     private toast: Toast,
-    public dataService: DataServiceProvider) {
+    public dataService: DataServiceProvider,
+      public events: Events,
+    public menu: MenuController,
+    public alerts:AlertProvider,
+    private fb: FormBuilder
+    ) {
       this.dataService.getProducts()
         .subscribe((response)=> {
             this.products = response
             console.log(this.products);
         });
   }
+
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      'mobile':[null,[Validators.required,Validators.pattern(/^[\s()+-]*([0-9][\s()+-]*){1,10}$/)]],
+      'password':[null,[Validators.required]]
+    });
+  } 
 
   scanoutercode() {
     this.selectedProduct = {};
@@ -36,7 +60,7 @@ export class HomePage {
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
-
+        alert("you scanned:(" + barcodeData.text+")")
         this.scaninnercode();
 
       } else {
@@ -58,15 +82,26 @@ export class HomePage {
     });
   }
 
+/*switch()
+{
+          this.navCtrl.push('SucessPage');
 
-  login(phone,otp)
+}*/
+  onLogin(phone,otp)
   {
+      if (this.loginForm.valid) {
     console.log(this.otp); console.log(this.phone);
       if((this.phone == "9999999999" || "0000000000" || "1234") && (this.otp == "1234" || "undefined"))
        {
      //alert("login sucessful");
      this.scanoutercode();
        }
+
+     }
+     else{
+      this.submitted = true;
+      return false;
+    }
  }
   
 
@@ -78,6 +113,8 @@ export class HomePage {
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
+        this.navCtrl.push('SucessPage');
+        
       } else {
         this.selectedProduct2 = {};
         this.productFound = false;

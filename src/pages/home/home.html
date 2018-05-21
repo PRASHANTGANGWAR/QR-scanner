@@ -1,44 +1,54 @@
-<!-- <ion-view id="login" hide-nav-bar="true">
-    <ion-content padding="true" scroll="false">
-        <form>
-            <div class="row responsive-md">
-                <div class="col col-50 col-offset-25">
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title><b>     Product Scanner
+</b></ion-title>
+  </ion-navbar>
+</ion-header>
 
-                    <div class="header padding text-center">
-                        <img src="img/logo.png" alt="Your logo here"/>
-                    </div>
+<ion-content class="form-content" text-center>
 
-                    <div class="list">
-                        <label class="item item-input">
-                            <input type="email" placeholder="Email">
-                        </label>
-                        <label class="item item-input">
-                            <input type="password" placeholder="Password">
-                        </label>
-                    </div>
-
-                    <button class="button button-block button-positive">
-                        Log In
-                    </button>
-
-                    <div class="row row-no-padding">
-                        <div class="col">
-                            <button class="button button-clear button-light">
-                                Forgot password?
-                            </button>
-                        </div>
-
-                        <div class="col text-right">
-                            <button class="button button-clear button-light">
-                                Sign up
-                            </button>
-                        </div>
-                    </div>
-                </div>
+  <div class="Loginpage">
+    <div class="formContainer">
+        <div class="logo">
+          <img src="assets/icon/favicon.png" />
+        </div>
+        <br>
+        <form [formGroup]="loginForm" >
+          <ion-list class="app-form" no-margin>
+            
+            <!-- mobile block -->
+            <ion-item no-lines>
+              <ion-icon name="ios-person-outline" item-start></ion-icon>
+              <ion-input [(ngModel)]="login.mobile" name="mobile" type="tel"  
+                  placeholder="Mobile Number" 
+                 formControlName="mobile">     
+              </ion-input>
+            </ion-item>
+              <div *ngIf="loginForm.get('mobile').hasError('required') && (submitted == true || loginForm.get('mobile').touched)" class="danger" padding-bottom>
+              Enter your mobile number
             </div>
-        </form>
-    </ion-content>
-</ion-view> -->
+             <div *ngIf="loginForm.get('mobile').hasError('pattern') && (submitted == true || loginForm.get('mobile').touched)" class="danger" padding-bottom>Not a valid mobile number
+             </div>
+
+           <!-- passwword block -->
+            <ion-item no-lines>
+              <ion-icon name="ios-lock-outline" item-start></ion-icon>
+              <ion-input [(ngModel)]="login.password" placeholder="Password" 
+                name="password" type="password" formControlName="password">
+              </ion-input>
+            </ion-item>
+              <div *ngIf="loginForm.get('password').hasError('required') && (submitted == true || loginForm.get('password').touched)" class="danger" padding-bottom>Password is required
+             </div>
+          </ion-list>
+
+          <button (click)="onLogin()" type="button"  color="primary" ion-button round block>Login</button>
+          <button color="secondary" (click)="onSignup()" ion-button round block>Register</button>
+
+          <p (click)="forgotPassword()" margin-top>Forgot Password ?</p>
+      </form>
+    </div>
+  </div>
+</ion-content>
 
 
 
@@ -48,18 +58,21 @@
 
 
 
+<!-- my code -->
 
- <ion-header>
+<!--  <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+     Product Scanner
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <div class="header padding text-center">
-                        <img src="assets/icon/favicon.ico" alt="QR scanner"/>
+                      <div class= "logo">
+                        <img src="assets/icon/favicon.png" alt="QR scanner"/>
+                      </div>
                     </div>
 
 
@@ -86,3 +99,53 @@
 </div>
 </form>
 </ion-content>
+ -->
+
+
+
+
+<!-- my code ends -->
+
+
+
+
+
+
+
+<!-- 
+ <ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="http://placehold.it/300x200"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <form (ngSubmit)="login()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
+        </ion-col>
+      </ion-row>
+      
+    </form>
+  </div>
+</ion-content> -->
